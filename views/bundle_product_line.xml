@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<record model="ir.actions.act_window" id="bundle_product_line_action_window">
+      <field name="name">bundle product line</field>
+      <field name="res_model">bundle.product.line</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+<!--    <record model="ir.ui.view" id="product_bundle_line_tree">-->
+<!--      <field name="name">bundle product list</field>-->
+<!--      <field name="model">bundle.product.line</field>-->
+<!--      <field name="arch" type="xml">-->
+<!--        <tree>-->
+
+<!--            <field name="product"/>-->
+<!--             <field name="product_variant"/>-->
+<!--          <field name="quantity"/>-->
+
+<!--          <field name="bundle"/>-->
+<!--            <field name="discount_value"/>-->
+
+<!--             <field name="default_code"/>-->
+<!--          <field name="image_1920"/>-->
+
+<!--        </tree>-->
+<!--      </field>-->
+<!--    </record>-->
+
+
+<record id="product_bundle_line_form" model="ir.ui.view">
+        <field name="name">Product Bundle Line Form</field>
+        <field name="model">bundle.product.line</field> <!--create view for the library.book-->
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                         <field name="product"/>
+                         <field name="product_variant"/>
+                          <field name="quantity"/>
+
+                          <field name="bundle"/>
+                            <field name="discount_value"/>
+
+                             <field name="default_code"/>
+                          <field name="image_1920" widget="image"/>
+
+                    </group>
+                </sheet>
+
+
+
+            </form>
+        </field>
+    </record>
+
+<menuitem name="Product line" id="product_line" parent="menu_root" action="bundle_product_line_action_window"/>
+
+  </data>
+</odoo>

@@ -1,0 +1,3 @@
+access_product_bundle_product_type1,access.product.bundle.product.type1,model_product_bundle_product_type1,,1,1,1,1
+access_product_bundle_product_type2,access.product.bundle.product.type1,model_product_bundle_product_type2,,1,1,1,1
+access_product_bundle_product_type3,access.product.bundle.product.type1,model_product_bundle_product_type3,,1,1,1,1

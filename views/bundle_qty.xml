@@ -1,0 +1,30 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<record model="ir.actions.act_window" id="bundle_qty_action_window">
+      <field name="name">bundle qty window</field>
+      <field name="res_model">product.bundle.qty</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.ui.view" id="product_qty_bundle.list">
+      <field name="name">bundle qty list</field>
+      <field name="model">product.bundle.qty</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="Is_add_range" widget="boolean_toggle"/>
+            <field name="Quantity"/>
+          <field name="Qty_start"/>
+          <field name="Qty_end"/>
+          <field name="bundle_id"/>
+            <field name="Discount_value"/>
+        </tree>
+      </field>
+    </record>
+
+
+
+
+
+  </data>
+</odoo>

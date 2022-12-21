@@ -1,0 +1,36 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<record model="ir.actions.act_window" id="product_action_window">
+      <field name="name">bundle window</field>
+      <field name="res_model">product.product</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+
+
+
+
+
+
+      <record id="product_view_form" model="ir.ui.view">
+        <field name="name">Product Form inherited</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name ='company_id']" position="after">
+                 <field name="product_qty"/>
+
+            </xpath>
+        </field>
+    </record>
+
+
+
+
+    <menuitem name="Products" id="product_menu" parent="menu_root" action="product_action_window"/>
+
+
+  </data>
+</odoo>

@@ -1,0 +1,183 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<record model="ir.actions.act_window" id="bundle_action_window">
+      <field name="name">bundle window</field>
+      <field name="res_model">product.bundle</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <record model="ir.ui.view" id="product_bundle_tree">
+      <field name="name">bundle list tree</field>
+      <field name="model">product.bundle</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="title"/>
+          <field name="description"/>
+          <field name="bundle_type"/>
+           <field name="discount_rule"/>
+           <field name="discount_type"/>
+           <field name="discount_value"/>
+           <field name="enable" widget="boolean_toggle"/>
+          <field name="active" widget="boolean_toggle"/>
+           <field name="priority" widget="boolean_toggle"/>
+           <field name="start_time"/>
+           <field name="end_time"/>
+           <field name="indefinite_bundle" widget="boolean_toggle"/>
+          <field name="product_total"/>
+             <field name="product_each"/>
+             <field name="product_tier"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+
+
+
+
+  <record id="bundle_form" model="ir.ui.view">
+        <field name="name">Bundle Form</field>
+        <field name="model">product.bundle</field> <!--create view for the library.book-->
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+
+                    </div>
+
+                       <group>
+                           <h2>General Setting</h2>
+                            <group><field name="title"/></group>
+                             <group><field name="description"/></group>
+                            <group><field name="enable" widget="boolean_toggle"/></group>
+                          <group><field name="active" widget="boolean_toggle"/></group>
+                          <group><field name="priority" widget="boolean_toggle"/></group>
+                             <group><field name="indefinite_bundle" widget="boolean_toggle"/></group>
+                            <group>
+                                    <field name="end_time" attrs="{'invisible': [('indefinite_bundle', '=', True)]}"/>
+                             <field name="start_time" attrs="{'invisible': [('indefinite_bundle', '=', True)]}"/>
+                            </group>
+
+                      </group>
+
+
+                      <group>
+                          <h2>Discount Settings</h2>
+                            <group><field name="bundle_type"/></group>
+                          <group><field name="discount_rule"/></group>
+                          <group><field name="discount_type"/></group>
+                          <group><field name="discount_value"/></group>
+                    </group>
+                    <field name="quantity_ids" attrs="{'invisible': [('bundle_type', '!=', 'tier')]}">
+                        <tree>
+
+                            <field name="Is_add_range" widget="boolean_toggle"/>
+                            <field name="Quantity"/>
+                             <field name="Qty_start"/>
+
+                            <field name="Qty_end"/>
+                            <field name="Discount_value"/>
+
+                            <field name="bundle_id"/>
+
+
+                            </tree>
+                        <form>
+                            <sheet>
+                                <div class="oe_title">
+
+                                </div>
+                                   <group>
+
+                                       <group><field name="Quantity" attrs="{'invisible': [('Is_add_range', '!=', False)]}"/></group>
+                                       <group><field name="bundle_id"/></group>
+                                        <group><field name="Discount_value"/></group>
+                                       <group><field name="Is_add_range" widget="boolean_toggle"/></group>
+                                         <group>
+                                             <field name="Qty_start" attrs="{'invisible': [('Is_add_range', '!=', True)]}"/>
+                                             <field name="Qty_end" attrs="{'invisible': [('Is_add_range', '!=', True)]}"/>
+                                         </group>
+
+                                  </group>
+                            </sheet>
+                        </form>
+                    </field>
+<!--                        <field name="product_total"  attrs="{'invisible': ['|','&amp;', ('bundle_type', '=', 'bundle'), ('discount_rule', '=', 'discount_products'),('bundle_type', '=', 'tier')]}"/>-->
+                        <field name="product_total" attrs="{'invisible': ['|','&amp;', ('bundle_type', '=', 'bundle'), ('discount_rule', '=', 'discount_products'),('bundle_type', '=', 'tier')]}">
+                            <tree editable="bottom">
+
+
+                            <field name="product"/>
+                             <field name="product_variant"/>
+                             <field name="price"/>
+                            <field name="quantity"/>
+                            <field name="default_code"/>
+                            <field name="image_1920" widget='image'/>
+                            <field name="bundle"/>
+
+
+                            </tree>
+                        </field>
+                        <field name="product_each" attrs="{'invisible': ['|','&amp;', ('bundle_type', '=', 'bundle'), ('discount_rule', '=', 'discount_total'),('bundle_type', '=', 'tier')]}">
+                            <tree editable="bottom">
+                                    <field name="product"/>
+                                 <field name="product_variant"/>
+                                <field name="price"/>
+                                <field name="quantity"/>
+                                <field name="default_code"/>
+                                <field name="image_1920" widget='image'/>
+                               <field name="discount_value"/>
+                                 <field name="bundle"/>
+<!--                                <field name="company_id" />-->
+                            </tree>
+                        </field>
+                        <field name="product_tier" attrs="{'invisible': ['|','&amp;', ('bundle_type', '=', 'bundle'), ('discount_rule', '=', 'discount_products'),'&amp;',('bundle_type', '=', 'bundle'), ('discount_rule', '=', 'discount_total')]}">
+                             <tree editable="bottom">
+                                <field name="product"/>
+                                <field name="product_variant"/>
+                              <field name="price"/>
+                                <field name="quantity"/>
+                                <field name="default_code"/>
+                                <field name="image_1920" widget='image'/>
+
+                                  <field name="bundle"/>
+                            </tree>
+                        </field>
+<!--                        <field name="product_variant" />-->
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+
+
+
+<!--                </script>-->
+
+
+<!--            </body>-->
+<!--        </template>-->
+
+
+
+    <menuitem name="product_bundle" id="menu_root"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Bundle" id="bundle_menu" parent="menu_root" action="bundle_action_window"/>
+<!--    <menuitem name="Menu 2" id="product_bundle.menu_2" parent="product_bundle.menu_root"/>-->
+
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="product_bundle.menu_1_list" parent="product_bundle.menu_1"
+              action="product_bundle.action_window"/>
+    <menuitem name="Server to list" id="product_bundle" parent="product_bundle.menu_2"
+              action="product_bundle.action_server"/>
+-->
+  </data>
+</odoo>

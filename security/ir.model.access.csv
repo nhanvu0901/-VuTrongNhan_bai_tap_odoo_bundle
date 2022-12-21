@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_product_bundle,access.product.bundle,model_product_bundle,,1,1,1,1
+access_product_bundle_setting,access.product.bundle.setting,model_product_bundle_setting,,1,1,1,1
+access_product_bundle_qty,access.product.bundle.qty,model_product_bundle_qty,,1,1,1,1
+access_product_bundle_report,access.product.bundle.report,model_product_bundle_report,,1,1,1,1
+access_bundle_product_line,access.bundle.product.line,model_bundle_product_line,,1,1,1,1
