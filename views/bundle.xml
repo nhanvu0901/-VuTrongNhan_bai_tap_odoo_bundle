@@ -57,8 +57,9 @@
                           <group><field name="priority" widget="boolean_toggle"/></group>
                              <group><field name="indefinite_bundle" widget="boolean_toggle"/></group>
                             <group>
-                                    <field name="end_time" attrs="{'invisible': [('indefinite_bundle', '=', True)]}"/>
+
                              <field name="start_time" attrs="{'invisible': [('indefinite_bundle', '=', True)]}"/>
+                                <field name="end_time" attrs="{'invisible': [('indefinite_bundle', '=', True)]}"/>
                             </group>
 
                       </group>

@@ -54,14 +54,27 @@ odoo.define('website.cart_frontend', function (require) {
                             let total_node = document.getElementById("order_total")
                             let money_span = document.createElement("TR")
                             money_span.style.color='red'
-                            let text = document.createElement("TD")
-                            text.textContent ="Final price after sale:"
-                            text.classList.add("text-right")
-                            money_span.appendChild(text)
-                            let money_node = document.createElement("TD")
-                            money_node.textContent = money +"$"
-                            money_node.classList.add("text-xl-right")
-                            money_span.appendChild(money_node)
+
+                            if(typeof(money) === "number"){
+                                let text = document.createElement("TD")
+                                text.textContent ="Final price after sale:"
+                                text.classList.add("text-right")
+                                money_span.appendChild(text)
+                                let money_node = document.createElement("TD")
+                                money_node.textContent = money +"$"
+                                money_node.classList.add("text-xl-right")
+                                money_span.appendChild(money_node)
+                            }
+                            else{
+                                money.forEach(item=>{
+                                    let para = document.createElement("P")
+                                    para.innerHTML = item
+                                    money_span.appendChild(para)
+                                })
+                            }
+
+
+
 
                             insertAfter(money_span,total_node)
                         }

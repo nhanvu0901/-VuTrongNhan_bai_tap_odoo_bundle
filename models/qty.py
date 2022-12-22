@@ -14,7 +14,7 @@ class Qty(models.Model):
     Discount_value = fields.Char(string="Discount")
     bundle_id = fields.Many2one('product.bundle')
 
-    @api.constrains('Quantity','Qty_start','Qty_end')
+    @api.depends('Quantity','Qty_start','Qty_end')
     def check_qty(self):
      if self.Is_add_range == True:
          if(self.Qty_start > self.Qty_end):
